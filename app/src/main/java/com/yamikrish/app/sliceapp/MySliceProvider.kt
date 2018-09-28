@@ -10,9 +10,9 @@ import androidx.slice.builders.SliceAction
 import android.R.attr.path
 import androidx.core.graphics.drawable.IconCompat
 import android.app.PendingIntent
-
-
-
+import android.view.Gravity
+import androidx.core.view.GravityCompat
+import androidx.slice.builders.ListBuilder.LARGE_IMAGE
 
 
 class MySliceProvider : SliceProvider() {
@@ -63,17 +63,30 @@ class MySliceProvider : SliceProvider() {
     fun createSlice(sliceUri: Uri): Slice {
         val activityAction = createActivityAction()
 
-        //Create the ListBuilder//
-        val listBuilder = ListBuilder(context!!, sliceUri, ListBuilder.INFINITY)
+        //Create the ListBuilder - Normal Title & SubTitle//
+        /*val listBuilder = ListBuilder(context!!, sliceUri, ListBuilder.INFINITY)
+                .addRow {
+                    it.title = "Test Launch!"
+                    it.subtitle = "Let's see how it works.. Just Click on it to proceed!!"
+                    it.primaryAction = activityAction
+                }*/
 
-        //Create the RowBuilder//
-        val rowBuilder = ListBuilder.RowBuilder(listBuilder)
-                .setTitle("Test Launch!")
-                .setSubtitle("Let's see how it works.. Just Click on it to proceed!!")
-                .setPrimaryAction(activityAction)
+        //Create the ListBuilder - With Header and Image//
+         val listBuilder = ListBuilder(context!!, sliceUri, ListBuilder.INFINITY)
+                 .setHeader { it.title = "Wanna Ride???" }
+                 .addGridRow {
+                     it.addCell {
+                         it.addImage(IconCompat.createWithResource(context, R.drawable.car), LARGE_IMAGE)
+                     }
+
+                 }
+                 .addRow {
+                     it.title = "BOOK NOW"
+                     it.primaryAction = activityAction
+                 }
 
 
-        listBuilder.addRow(rowBuilder)
+
 
         return listBuilder.build()
     }
