@@ -33,8 +33,8 @@ class NotifyWorker(context: Context, workerParams: WorkerParameters) : Worker(co
         }
 
         val notification = NotificationCompat.Builder(mContext, channelId)
-                .setContentTitle("Water Reminder")
-                .setContentText("It's been 15 minutes! Drink, Water!!")
+                .setContentTitle("Timer Reminder")
+                .setContentText("It's been 15 minutes!!!")
                 .setSmallIcon(R.drawable.ic_lock_idle_alarm)
 
         notificationManager.notify(2, notification.build())
