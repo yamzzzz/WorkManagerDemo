@@ -22,7 +22,7 @@ class DataWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
         val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val channelId = "WorkManager_06"
 
-        //If on Oreo then notification required a notification channel.
+        //In Oreo, notification required a notification channel.
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val channel = NotificationChannel(channelId, "WorkManager", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
