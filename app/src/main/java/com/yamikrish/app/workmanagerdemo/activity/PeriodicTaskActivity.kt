@@ -15,6 +15,7 @@ class PeriodicTaskActivity : AppCompatActivity() {
 
     private lateinit var workManager: WorkManager
     private val workTag = "starterNotifiWork"
+    private val periodicWorkTag = "periodicNotifiWork"
 
     private lateinit var prefs: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -75,7 +76,7 @@ class PeriodicTaskActivity : AppCompatActivity() {
 
     private fun startNotifyWorker() {
         val requestBuilder = PeriodicWorkRequest.Builder(NotifyWorker::class.java, 15, TimeUnit.MINUTES)
-        WorkManager.getInstance().enqueueUniquePeriodicWork(workTag, ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build())
+        WorkManager.getInstance().enqueueUniquePeriodicWork(periodicWorkTag, ExistingPeriodicWorkPolicy.REPLACE, requestBuilder.build())
     }
 
     override fun onSupportNavigateUp(): Boolean {
